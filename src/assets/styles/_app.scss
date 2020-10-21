@@ -1,0 +1,17 @@
+.notFound {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  h2 {
+    font-size: 30px;
+    font-family: $primary_font;
+    text-transform: uppercase;
+  }
+}
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
