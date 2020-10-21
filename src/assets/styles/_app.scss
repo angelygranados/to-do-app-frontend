@@ -15,3 +15,47 @@
   flex-direction: column;
   justify-content: space-between;
 }
+.manage-users {
+  max-width: 1200px;
+  min-height: 50vh;
+  width: 70%;
+  margin: 0 auto;
+  form {
+    padding: 15px;
+    h2,
+    .form-group {
+      font-family: $primary_font;
+      text-transform: uppercase;
+      margin: 30px 0;
+    }
+    .field {
+      width: 50%;
+      label {
+        font-size: 18px;
+      }
+      input {
+        width: 100%;
+        margin: 10px 0;
+        font-size: 16px;
+        text-transform: uppercase;
+        color: $txt_color;
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus,
+        &:-webkit-autofill:active {
+          -webkit-box-shadow: 0 0 0 30px rgba(255, 255, 255, 1) inset !important;
+          -webkit-text-fill-color: $txt_color;
+        }
+      }
+    }
+    .btn {
+      @include btn;
+      &.return {
+        @include btn($color: transparent);
+        border: 1px solid $secondary_color;
+        color: $secondary_color;
+        float: right;
+      }
+    }
+  }
+}

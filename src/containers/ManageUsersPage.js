@@ -1,28 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { loadUsers, saveUser } from "../redux/actions/usersActions";
+import { loadUser, saveUser } from "../redux/actions/usersActions";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 import UserForm from "../components/UsersForm";
 
-const ManageUsersPage = ({ users, loadUsers, saveUser, history, ...props }) => {
+const ManageUsersPage = ({ id, loadUser, saveUser, history, ...props }) => {
   const [user, setUser] = useState({});
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    if (users.length === 0) {
-      loadUsers().catch((error) => {
-        alert("Failed load users" + error);
-      });
+    if (id !== undefined) {
+      loadUser(id)
+        .then((res) => setUser(res.data))
+        .catch((error) => {
+          alert("Failed load users" + error);
+        });
     } else {
       setUser({ ...props.users });
     }
   }, []);
   function formIsValid() {
-    const { name } = user;
+    const { name, _id } = user;
     const errors = {};
-
     if (!name) errors.name = "Name is required.";
     setErrors(errors);
     return Object.keys(errors).length === 0;
@@ -40,8 +41,8 @@ const ManageUsersPage = ({ users, loadUsers, saveUser, history, ...props }) => {
     setSaving(true);
     saveUser(user)
       .then(() => {
-        toast.success("Course saved.");
-        history.push("/");
+        toast.success("User saved.");
+        history.push("/users");
       })
       .catch((error) => {
         setSaving(false);
@@ -61,34 +62,22 @@ const ManageUsersPage = ({ users, loadUsers, saveUser, history, ...props }) => {
   );
 };
 
-const newUser = {
-  id: null,
-  name: "",
-};
-export function getUserBySlug(users, id) {
-  if (id === undefined) return;
-  console.log(users);
-}
-
 ManageUsersPage.propTypes = {
-  users: PropTypes.object.isRequired,
-  loadUsers: PropTypes.func.isRequired,
+  user: PropTypes.array.isRequired,
+  loadUser: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state, ownProps) {
   const id = ownProps.match.params.id;
-  const user =
-    (id && state.users.length > 0) || state.users !== undefined
-      ? getUserBySlug(state.users, id)
-      : newUser;
+  const user = [];
   return {
+    id,
     user,
-    users: state.users,
   };
 }
 
 const mapDispatchToProps = {
-  loadUsers,
+  loadUser,
   saveUser,
 };
 

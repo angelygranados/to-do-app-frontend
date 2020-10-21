@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { loadUsers } from "../redux/actions/usersActions";
+import { loadUsers, deleteUser } from "../redux/actions/usersActions";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import Spinner from "./common/Spinner";
-import User from "./User";
+import Spinner from "../components/common/Spinner";
+import User from "../components/User";
+import { toast } from "react-toastify";
 
-export function UsersPage({ users, loadUsers, history, ...props }) {
+export function UsersPage({ users, loadUsers, deleteUser, history, ...props }) {
   const [user, setUser] = useState({ ...props.users });
-  const [newUser, setNewUser] = useState({
-    newUser: false,
-  });
   useEffect(() => {
     if (users === undefined) {
       loadUsers().catch((error) => {
@@ -21,27 +19,35 @@ export function UsersPage({ users, loadUsers, history, ...props }) {
     }
   }, []);
 
+  async function handleDelete(id) {
+    toast.success("User deleted");
+    try {
+      await deleteUser(id);
+    } catch (error) {
+      toast.error("Delete failed. " + error.message, { autoClose: false });
+    }
+  }
   return users === undefined ? (
     <Spinner />
   ) : (
     <section className="users">
-      <h2>Users</h2>
-      <Link to={"/user/"} className="btn add-user">
-        Add New User
-      </Link>
+      <div className="users__actions">
+        <h2>Users</h2>
+        <Link to={"/users/manage-users/"} className="btn add-user">
+          Add New User
+        </Link>
+      </div>
       <table className="table">
         <thead>
           <tr>
-            <th />
             <th>Full Name</th>
-            <th>Tasks</th>
             <th />
             <th />
           </tr>
         </thead>
         <tbody>
           {users.map((user) => (
-            <User key={user._id} {...user} />
+            <User key={user._id} onDelete={handleDelete} user={user} />
           ))}
         </tbody>
       </table>
@@ -52,16 +58,18 @@ export function UsersPage({ users, loadUsers, history, ...props }) {
 UsersPage.propTypes = {
   users: PropTypes.array.isRequired,
   loadUsers: PropTypes.func.isRequired,
+  deleteUser: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
-    users: state.users.data,
+    users: state.usersReducer.users,
     loading: state.apiCallsInProgress > 0,
   };
 };
 
 const mapDispatchToProps = {
+  deleteUser,
   loadUsers,
 };
 

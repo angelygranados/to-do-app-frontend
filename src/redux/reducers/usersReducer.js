@@ -1,19 +1,29 @@
-import { useReducer } from "react";
-import { act } from "react-dom/test-utils";
 import * as types from "../actions/actionTypes";
 
 export default function usersReducer(state = [], action) {
   switch (action.type) {
     case types.LOAD_USERS_SUCCESS:
-      return action.users;
+      return {
+        ...state,
+        users: [...action.users.data],
+      };
     case types.CREATE_USER_SUCCESS:
-      return [...state, { ...action.user }];
+      return {
+        ...state,
+        users: [...state.users, action.user],
+      };
     case types.UPDATE_USER_SUCCESS:
-      return state.map((user) =>
-        user.id === action.user ? action.user : user
-      );
+      return {
+        ...state,
+        users: state.users.map((item) =>
+          item._id == action.user._id ? action.user : item
+        ),
+      };
     case types.DELETE_USER_OPTIMISTIC:
-      return state.filter((user) => user.id !== action.user.id);
+      return {
+        ...state,
+        users: state.users.filter((item) => item._id !== action.user),
+      };
     default:
       return state;
   }

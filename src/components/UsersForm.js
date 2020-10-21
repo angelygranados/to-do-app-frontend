@@ -1,11 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import TextInput from "./common/TextInput";
 
 const UserForm = ({ user, onSave, onChange, saving = false, errors = {} }) => {
+  console.log(user);
   return (
     <form onSubmit={onSave}>
-      <h2>Add User</h2>
+      <Link to={"/users/"} className="btn return">
+        BACK
+      </Link>
+      <h2>{user._id ? "Edit" : "Add"} User</h2>
       {errors.onSave && (
         <div className="alert alert-danger" role="alert">
           {errors.onSave}

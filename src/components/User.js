@@ -1,18 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const User = (user) => {
+const User = ({ user, onDelete }) => {
   return (
     <tr key={user._id}>
-      <td></td>
       <td>{user.name}</td>
-      <td>Tasks</td>
       <td>
-        <Link to={"/user/" + user._id} className="btn add-user">
+        <Link to={"/users/manage-users/" + user._id} className="btn add-user">
           Edit
         </Link>
       </td>
-      <td>Delete</td>
+      <td>
+        <button className="btn delete" onClick={() => onDelete(user._id)}>
+          Delete
+        </button>
+      </td>
     </tr>
   );
 };

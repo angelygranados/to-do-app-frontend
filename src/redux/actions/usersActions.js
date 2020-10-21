@@ -32,17 +32,25 @@ export function loadUsers() {
       });
   };
 }
-
+export function loadUser(user) {
+  return function (dispatch) {
+    dispatch(beginApiCall());
+    return usersApi.getUser(user);
+  };
+}
 export function saveUser(user) {
+  console.log(user);
   //eslint-disable-next-line no-unused-vars
   return function (dispatch, getState) {
     dispatch(beginApiCall());
     return usersApi
       .saveUser(user)
       .then((savedUser) => {
-        user.id
-          ? dispatch(updateUserSuccess(savedUser))
-          : dispatch(createUserSuccess(savedUser));
+        user._id
+          ? dispatch(updateUserSuccess(user))
+          : dispatch(
+              createUserSuccess({ name: user.name, _id: savedUser.data })
+            );
       })
       .catch((error) => {
         dispatch(apiCallError(error));
@@ -56,6 +64,6 @@ export function deleteUser(user) {
     // Doing optimistic delete, so not dispatching begin/end api call
     // actions, or apiCallError action since we're not showing the loading status for this.
     dispatch(deleteUserOptimistic(user));
-    return usersApi.deleteUser(user.id);
+    return usersApi.deleteUser(user);
   };
 }

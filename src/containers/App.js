@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import UsersList from "../components/UsersList";
+import UsersList from "./UsersList";
 import ManageUsersPage from "./ManageUsersPage";
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
@@ -11,9 +11,9 @@ function App() {
     <main className="app">
       <Header />
       <Switch>
-        <Route exact path="/" component={UsersList} />
-        <Route path="/user/:id" component={ManageUsersPage} />
-        <Route path="/user" component={ManageUsersPage} />
+        <Route exact path="/users" component={UsersList} />
+        <Route path="/users/manage-users/:id" component={ManageUsersPage} />
+        <Route path="/users/manage-users" component={ManageUsersPage} />
         <Route component={PageNotFound} />
       </Switch>
       <Footer />
