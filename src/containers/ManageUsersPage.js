@@ -9,7 +9,6 @@ const ManageUsersPage = ({ id, loadUser, saveUser, history, ...props }) => {
   const [user, setUser] = useState({});
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
-
   useEffect(() => {
     if (id !== undefined) {
       loadUser(id)

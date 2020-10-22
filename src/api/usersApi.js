@@ -1,4 +1,3 @@
-import { func } from "prop-types";
 import { handleResponse, handleError } from "./apiUtils";
 const baseUrl = "https://sleepy-citadel-64673.herokuapp.com/api/users/";
 
@@ -10,7 +9,6 @@ export function getUser(id) {
     .then(handleResponse)
     .catch(handleError);
 }
-
 export function saveUser(user) {
   let data = { name: user.name };
   return fetch(baseUrl + (user._id || ""), {

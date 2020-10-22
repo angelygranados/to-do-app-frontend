@@ -56,7 +56,6 @@ export function UsersPage({ users, loadUsers, deleteUser, history, ...props }) {
 }
 
 UsersPage.propTypes = {
-  users: PropTypes.array.isRequired,
   loadUsers: PropTypes.func.isRequired,
   deleteUser: PropTypes.func.isRequired,
 };

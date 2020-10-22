@@ -6,7 +6,7 @@ import { Provider as ReduxProvider } from "react-redux";
 import rootReducer from "./redux/reducers/index";
 import thunk from "redux-thunk";
 import "./assets/styles/styles.scss";
-import App from "./containers/App";
+import App from "./routes/App";
 
 import * as serviceWorker from "./serviceWorker";
 

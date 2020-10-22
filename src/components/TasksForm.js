@@ -1,27 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import TextInput from "./common/TextInput";
 
-const UserForm = ({ user, onSave, onChange, saving = false, errors = {} }) => {
+const TasksForm = ({ task, onSave, onChange, saving = false, errors = {} }) => {
+  const [usersList, setUsersList] = useState({
+    users: [],
+  });
   return (
     <form onSubmit={onSave}>
-      <Link to={"/users/"} className="btn return">
+      <Link to={"/"} className="btn return">
         BACK
       </Link>
-      <h2>{user._id ? "Edit" : "Add"} User</h2>
+      <h2>New Task</h2>
       {errors.onSave && (
         <div className="alert alert-danger" role="alert">
           {errors.onSave}
         </div>
       )}
       <TextInput
-        name="name"
-        label="Full Name"
-        value={user.name}
+        name="description"
+        label="Description"
+        value={task.description}
         onChange={onChange}
         error={errors.name}
       />
+      <select
+        name="state"
+        label="State"
+        onChange={onChange}
+        error={errors.state}
+      >
+        <option>To Do</option>
+        <option>Done</option>
+      </select>
       <button type="submit" disabled={saving} className="btn btn-primary">
         {saving ? "Saving..." : "Save"}
       </button>
@@ -29,12 +41,12 @@ const UserForm = ({ user, onSave, onChange, saving = false, errors = {} }) => {
   );
 };
 
-UserForm.propTypes = {
-  user: PropTypes.object.isRequired,
+TasksForm.propTypes = {
+  task: PropTypes.object.isRequired,
   errors: PropTypes.object,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   saving: PropTypes.bool,
 };
 
-export default UserForm;
+export default TasksForm;

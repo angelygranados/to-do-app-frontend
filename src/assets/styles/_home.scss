@@ -1,0 +1,68 @@
+.home {
+  max-width: 1200px;
+  min-height: 50vh;
+  width: 70%;
+  margin: 0 auto;
+  padding: 20px 15px;
+  .title {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    h2 {
+      font-family: $primary_font;
+      text-transform: uppercase;
+    }
+    .btn {
+      @include btn;
+      &.return {
+        @include btn($color: transparent);
+        border: 1px solid $secondary_color;
+        color: $secondary_color;
+      }
+    }
+  }
+  .user_tasks_table {
+    font-family: $primary_font;
+    text-transform: uppercase;
+    table {
+      width: 100%;
+      margin: 20px 0;
+      font-family: $primary_font;
+      text-transform: uppercase;
+      border-collapse: collapse;
+      thead > tr {
+        border-bottom: 1px solid $secondary_color;
+      }
+      tr {
+        height: 30px;
+        margin: 10px 0;
+        box-sizing: border-box;
+
+        td:nth-of-type(3) {
+          display: flex;
+          justify-content: space-around;
+        }
+        th:nth-of-type(1),
+        td:nth-of-type(1) {
+          width: 50%;
+        }
+        th:nth-of-type(2),
+        td:nth-of-type(2) {
+          width: 20%;
+        }
+      }
+      th {
+        text-align: left;
+      }
+    }
+    .btn {
+      text-decoration: none;
+      margin: 0 10px;
+
+      @include btn;
+      &.delete {
+        @include btn($color: $red);
+      }
+    }
+  }
+}
