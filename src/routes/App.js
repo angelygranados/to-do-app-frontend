@@ -17,6 +17,7 @@ function App() {
         <Route exact path="/users" component={UsersList} />
         <Route path="/users/manage-users/:id" component={ManageUsersPage} />
         <Route path="/users/manage-users/" component={ManageUsersPage} />
+        <Route path="/tasks/manage-tasks/:id" component={ManageTasksPage} />
         <Route path="/tasks/manage-tasks" component={ManageTasksPage} />
         <Route component={PageNotFound} />
       </Switch>

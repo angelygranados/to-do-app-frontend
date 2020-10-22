@@ -5,6 +5,16 @@ import { beginApiCall, apiCallError } from "./apiStatusActions";
 export function loadTasksSuccess(tasks) {
   return { type: types.LOAD_TASKS_SUCCESS, tasks };
 }
+export function createTaskSuccess(task) {
+  return { type: types.CREATE_TASK_SUCCESS, task };
+}
+
+export function updateTaskSuccess(task) {
+  return { type: types.UPDATE_TASK_SUCCESS, task };
+}
+export function deleteTaskOptimistic(taskId) {
+  return { type: types.DELETE_TASK_OPTIMISTIC, taskId };
+}
 
 //Trigger API calls
 
@@ -20,5 +30,37 @@ export function loadTasks() {
         dispatch(apiCallError(err));
         throw err;
       });
+  };
+}
+export function loadTask(taskId) {
+  return function (dispatch) {
+    dispatch(beginApiCall());
+    return tasksApi.getTask(taskId);
+  };
+}
+export function saveTask(task) {
+  //eslint-disable-next-line no-unused-vars
+  return function (dispatch, getState) {
+    dispatch(beginApiCall());
+    return tasksApi
+      .saveTask(task)
+      .then((savedTask) => {
+        task._id
+          ? dispatch(updateTaskSuccess(task))
+          : dispatch(createTaskSuccess({ savedTask, ...task }));
+      })
+      .catch((error) => {
+        dispatch(apiCallError(error));
+        throw error;
+      });
+  };
+}
+
+export function deleteTask(taskId) {
+  return function (dispatch) {
+    // Doing optimistic delete, so not dispatching begin/end api call
+    // actions, or apiCallError action since we're not showing the loading status for this.
+    dispatch(deleteTaskOptimistic(taskId));
+    return tasksApi.deleteTask(taskId);
   };
 }

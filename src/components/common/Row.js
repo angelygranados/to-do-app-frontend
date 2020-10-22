@@ -1,14 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Row = (...task) => {
+const Row = ({ task, onDelete }) => {
   return (
-    <tr key={task[0]._id}>
-      <td>{task[0].description}</td>
-      <td>{task[0].state}</td>
+    <tr key={task._id}>
+      <td>{task.description}</td>
+      <td>{task.state}</td>
       <td>
-        <button className="btn">Edit</button>
-        <button className="btn delete">Delete</button>
+        <Link to={"/tasks/manage-tasks/" + task._id} className="btn add-user">
+          Edit
+        </Link>
+        <button className="btn delete" onClick={() => onDelete(task._id)}>
+          Delete
+        </button>
       </td>
     </tr>
   );

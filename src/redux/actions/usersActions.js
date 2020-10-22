@@ -39,7 +39,6 @@ export function loadUser(user) {
   };
 }
 export function saveUser(user) {
-  console.log(user);
   //eslint-disable-next-line no-unused-vars
   return function (dispatch, getState) {
     dispatch(beginApiCall());

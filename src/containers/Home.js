@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { loadTasks } from "../redux/actions/tasksActions";
+import { loadTasks, deleteTask } from "../redux/actions/tasksActions";
 import Spinner from "../components/common/Spinner";
 import PropTypes from "prop-types";
 import TasksList from "../components/TasksList";
