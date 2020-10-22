@@ -5,19 +5,17 @@ import { beginApiCall, apiCallError } from "./apiStatusActions";
 export function loadUsersSuccess(users) {
   return { type: types.LOAD_USERS_SUCCESS, users };
 }
-
 export function createUserSuccess(user) {
   return { type: types.CREATE_USER_SUCCESS, user };
 }
-
 export function updateUserSuccess(user) {
   return { type: types.UPDATE_USER_SUCCESS, user };
 }
-
 export function deleteUserOptimistic(user) {
   return { type: types.DELETE_USER_OPTIMISTIC, user };
 }
 
+//Trigger API calls
 export function loadUsers() {
   return function (dispatch) {
     dispatch(beginApiCall());
@@ -57,11 +55,8 @@ export function saveUser(user) {
       });
   };
 }
-
 export function deleteUser(user) {
   return function (dispatch) {
-    // Doing optimistic delete, so not dispatching begin/end api call
-    // actions, or apiCallError action since we're not showing the loading status for this.
     dispatch(deleteUserOptimistic(user));
     return usersApi.deleteUser(user);
   };

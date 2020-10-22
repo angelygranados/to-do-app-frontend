@@ -14,7 +14,7 @@ const ManageTasksPage = ({ id, saveTask, loadTask, history, ...props }) => {
       loadTask(id)
         .then((res) => setTask(res.data))
         .catch((error) => {
-          alert("Failed load users" + error);
+          alert("Failed load tasks" + error);
         });
     } else {
       setTask({ ...props.task });
@@ -22,7 +22,7 @@ const ManageTasksPage = ({ id, saveTask, loadTask, history, ...props }) => {
   }, []);
 
   function formIsValid() {
-    const { description, _id, userId, username, state } = task;
+    const { description, userId, state } = task;
     const errors = {};
     if (!description) errors.description = "Description is required.";
     if (!userId) errors.userId = "User is required";
@@ -33,7 +33,7 @@ const ManageTasksPage = ({ id, saveTask, loadTask, history, ...props }) => {
   function handleChange(event) {
     const { name, value } = event.target;
     let index = event.nativeEvent.target.selectedIndex;
-    if (name == "userId") {
+    if (name === "userId") {
       setTask((prevTask) => ({
         ...prevTask,
         ["username"]: event.nativeEvent.target[index].text,
@@ -54,7 +54,7 @@ const ManageTasksPage = ({ id, saveTask, loadTask, history, ...props }) => {
     setSaving(true);
     saveTask(task)
       .then(() => {
-        toast.success("User saved.");
+        toast.success("Task saved.");
         history.push("/");
       })
       .catch((error) => {

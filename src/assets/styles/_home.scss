@@ -14,6 +14,10 @@
       margin-left: 15px;
     }
   }
+  p {
+    font-family: $primary_font;
+    font-size: 18px;
+  }
   .title {
     display: flex;
     width: 100%;
@@ -62,6 +66,16 @@
       }
       th {
         text-align: left;
+      }
+    }
+    .check {
+      background: none;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      img {
+        width: 30px;
+        height: 30px;
       }
     }
     .btn {

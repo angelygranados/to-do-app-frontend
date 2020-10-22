@@ -8,7 +8,6 @@ export function loadTasksSuccess(tasks) {
 export function createTaskSuccess(task) {
   return { type: types.CREATE_TASK_SUCCESS, task };
 }
-
 export function updateTaskSuccess(task) {
   return { type: types.UPDATE_TASK_SUCCESS, task };
 }
@@ -17,7 +16,6 @@ export function deleteTaskOptimistic(taskId) {
 }
 
 //Trigger API calls
-
 export function loadTasks() {
   return function (dispatch) {
     dispatch(beginApiCall());
@@ -57,8 +55,6 @@ export function saveTask(task) {
 }
 export function deleteTask(taskId) {
   return function (dispatch) {
-    // Doing optimistic delete, so not dispatching begin/end api call
-    // actions, or apiCallError action since we're not showing the loading status for this.
     dispatch(deleteTaskOptimistic(taskId));
     return tasksApi.deleteTask(taskId);
   };

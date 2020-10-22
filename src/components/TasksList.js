@@ -11,7 +11,7 @@ const TasksList = (tasks) => {
   const uniqueUsers = [...new Set(users)];
   uniqueUsers.map((user) => {
     orderedTasks[user] = Object.values(tasks).filter(
-      (item) => item.username == user
+      (item) => item.username === user
     );
   });
   return (

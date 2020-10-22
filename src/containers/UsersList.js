@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
 import Spinner from "../components/common/Spinner";
 import User from "../components/User";
 import { toast } from "react-toastify";
-import arrowBackIcon from "../assets/images/arrow-back.png";
 
 export function UsersPage({ users, loadUsers, deleteUser, history, ...props }) {
   const [user, setUser] = useState({ ...props.users });
@@ -43,21 +42,23 @@ export function UsersPage({ users, loadUsers, deleteUser, history, ...props }) {
           </Link>
         </div>
       </div>
-
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Full Name</th>
-            <th />
-            <th />
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <User key={user._id} onDelete={handleDelete} user={user} />
-          ))}
-        </tbody>
-      </table>
+      {users.length === 0 && <p>No users found</p>}
+      {users.length > 0 && (
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Full Name</th>
+              <th />
+              <th />
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <User key={user._id} onDelete={handleDelete} user={user} />
+            ))}
+          </tbody>
+        </table>
+      )}
     </section>
   );
 }

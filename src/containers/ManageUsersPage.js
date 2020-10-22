@@ -21,7 +21,7 @@ const ManageUsersPage = ({ id, loadUser, saveUser, history, ...props }) => {
     }
   }, []);
   function formIsValid() {
-    const { name, _id } = user;
+    const { name } = user;
     const errors = {};
     if (!name) errors.name = "Name is required.";
     setErrors(errors);

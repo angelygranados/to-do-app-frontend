@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { loadTasks, deleteTask } from "../redux/actions/tasksActions";
+import { loadTasks } from "../redux/actions/tasksActions";
 import Spinner from "../components/common/Spinner";
 import PropTypes from "prop-types";
 import TasksList from "../components/TasksList";
 
 const HomePage = ({ loadTasks, tasks, ...props }) => {
-  const [task, setTask] = useState({ ...props.tasks });
   useEffect(() => {
     loadTasks().catch((error) => {
       alert("Failed load tasks" + error);
@@ -29,8 +28,8 @@ const HomePage = ({ loadTasks, tasks, ...props }) => {
           </Link>
         </div>
       </div>
-      {Object.keys(tasks).length == 0 ? (
-        <p>There are no tasks yet</p>
+      {Object.keys(tasks).length === 0 ? (
+        <p>No tasks found</p>
       ) : (
         <TasksList {...tasks} />
       )}
@@ -42,7 +41,7 @@ HomePage.propTypes = {
   loadTasks: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   const tasks = state.tasksReducer.tasks;
   return {
     tasks,

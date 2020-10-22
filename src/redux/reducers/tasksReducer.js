@@ -16,7 +16,7 @@ export default function tasksReducer(state = [], action) {
       return {
         ...state,
         tasks: state.tasks.map((item) =>
-          item._id == action.task._id ? action.task : item
+          item._id === action.task._id ? action.task : item
         ),
       };
     case types.DELETE_TASK_OPTIMISTIC:

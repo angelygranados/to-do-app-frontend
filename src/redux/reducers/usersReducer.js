@@ -16,7 +16,7 @@ export default function usersReducer(state = [], action) {
       return {
         ...state,
         users: state.users.map((item) =>
-          item._id == action.user._id ? action.user : item
+          item._id === action.user._id ? action.user : item
         ),
       };
     case types.DELETE_USER_OPTIMISTIC:

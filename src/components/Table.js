@@ -9,13 +9,13 @@ const Task = ({ history, deleteTask, saveTask, ...props }) => {
   async function handleDelete(id) {
     toast.success("Task deleted");
     try {
-      let deletedTasks = await deleteTask(id);
+      await deleteTask(id);
     } catch (error) {
       toast.error("Delete failed. " + error.message, { autoClose: false });
     }
   }
   async function toggleState(task) {
-    if (task.state == "to do") {
+    if (task.state === "to do") {
       task.state = "done";
     } else {
       task.state = "to do";
@@ -53,6 +53,7 @@ const Task = ({ history, deleteTask, saveTask, ...props }) => {
     </div>
   );
 };
+
 const mapStateToProps = (state) => {
   return {
     ...state,

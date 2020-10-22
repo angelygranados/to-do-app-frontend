@@ -17,6 +17,10 @@
       display: flex;
     }
   }
+  p {
+    font-family: $primary_font;
+    font-size: 18px;
+  }
   table {
     width: 100%;
     margin: 20px 0;

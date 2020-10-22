@@ -24,7 +24,6 @@ export function saveTask(task) {
     .then(handleResponse)
     .catch(handleError);
 }
-
 export function deleteTask(taskId) {
   return fetch(baseUrl + taskId, {
     method: "delete",

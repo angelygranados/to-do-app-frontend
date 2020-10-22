@@ -5,7 +5,11 @@ const Footer = () => {
     <footer id="footer" className="footer">
       <span>
         Developed by
-        <a href="https://angelygranados.com/" target="_blank">
+        <a
+          href="https://angelygranados.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Angely Granados
         </a>
       </span>
