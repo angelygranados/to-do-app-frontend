@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import Spinner from "../components/common/Spinner";
 import User from "../components/User";
 import { toast } from "react-toastify";
+import arrowBackIcon from "../assets/images/arrow-back.png";
 
 export function UsersPage({ users, loadUsers, deleteUser, history, ...props }) {
   const [user, setUser] = useState({ ...props.users });
@@ -33,10 +34,16 @@ export function UsersPage({ users, loadUsers, deleteUser, history, ...props }) {
     <section className="users">
       <div className="users__actions">
         <h2>Users</h2>
-        <Link to={"/users/manage-users/"} className="btn add-user">
-          Add New User
-        </Link>
+        <div className="add-user">
+          <Link to={"/users/manage-users/"} className="btn">
+            Add New User
+          </Link>
+          <Link className="btn return" to={"/"}>
+            Back
+          </Link>
+        </div>
       </div>
+
       <table className="table">
         <thead>
           <tr>

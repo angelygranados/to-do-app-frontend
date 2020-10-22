@@ -1,11 +1,10 @@
 import React from "react";
-import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { deleteTask } from "../redux/actions/tasksActions";
+import { deleteTask, saveTask } from "../redux/actions/tasksActions";
 import Row from "./common/Row";
 import { toast } from "react-toastify";
 
-const Task = ({ history, deleteTask, ...props }) => {
+const Task = ({ history, deleteTask, saveTask, ...props }) => {
   const item = props;
   async function handleDelete(id) {
     toast.success("Task deleted");
@@ -15,6 +14,20 @@ const Task = ({ history, deleteTask, ...props }) => {
       toast.error("Delete failed. " + error.message, { autoClose: false });
     }
   }
+  async function toggleState(task) {
+    if (task.state == "to do") {
+      task.state = "done";
+    } else {
+      task.state = "to do";
+    }
+    try {
+      await saveTask(task);
+      toast.success("State updated.");
+    } catch (err) {
+      console.log("failed" + err);
+    }
+  }
+
   return (
     <div className="user_tasks_table">
       <h3>{item[0]}</h3>
@@ -27,8 +40,13 @@ const Task = ({ history, deleteTask, ...props }) => {
           </tr>
         </thead>
         <tbody>
-          {item[1].map((item) => (
-            <Row task={item} onDelete={handleDelete} />
+          {item[1].map((item, index) => (
+            <Row
+              key={"row" + index}
+              task={item}
+              onDelete={handleDelete}
+              toggleState={toggleState}
+            />
           ))}
         </tbody>
       </table>
@@ -43,6 +61,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   deleteTask,
+  saveTask,
 };
-
 export default connect(mapStateToProps, mapDispatchToProps)(Task);

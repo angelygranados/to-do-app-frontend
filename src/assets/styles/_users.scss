@@ -13,8 +13,10 @@
       text-transform: uppercase;
       color: $txt_color;
     }
+    .add-user {
+      display: flex;
+    }
   }
-
   table {
     width: 100%;
     margin: 20px 0;
@@ -23,6 +25,9 @@
     border-collapse: collapse;
     thead > tr {
       border-bottom: 1px solid $secondary_color;
+    }
+    tbody > tr {
+      border-bottom: 1px solid rgba($color: $secondary_color, $alpha: 0.2);
     }
     tr {
       height: 40px;
@@ -38,8 +43,16 @@
   .btn {
     text-decoration: none;
     @include btn;
+
     &.delete {
       @include btn($color: $red);
+    }
+    &.return {
+      @include btn($color: transparent);
+      border: 1px solid $secondary_color;
+      color: $secondary_color;
+      float: right;
+      margin-left: 15px;
     }
   }
 }

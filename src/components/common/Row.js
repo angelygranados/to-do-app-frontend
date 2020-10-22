@@ -1,11 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Row = ({ task, onDelete }) => {
+const Row = ({ task, onDelete, toggleState }) => {
   return (
     <tr key={task._id}>
       <td>{task.description}</td>
-      <td>{task.state}</td>
+      <td>
+        <button className="check" onClick={() => toggleState(task)}>
+          {task.state}
+        </button>
+      </td>
       <td>
         <Link to={"/tasks/manage-tasks/" + task._id} className="btn add-user">
           Edit

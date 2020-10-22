@@ -32,9 +32,9 @@ const TasksForm = ({ task, onSave, onChange, saving = false, errors = {} }) => {
         onChange={onChange}
         error={errors.description}
       />
-      <div class="form-group">
-        <label for="userId">Select user</label>
-        <div class="field">
+      <div className="form-group">
+        <label htmlFor="userId">Select user</label>
+        <div className="field">
           <select
             name="userId"
             value={task.userId}
@@ -55,9 +55,9 @@ const TasksForm = ({ task, onSave, onChange, saving = false, errors = {} }) => {
           )}
         </div>
       </div>
-      <div class="form-group">
-        <label for="userId">Select state</label>
-        <div class="field">
+      <div className="form-group">
+        <label htmlFor="userId">Select state</label>
+        <div className="field">
           <select
             name="state"
             label="State"

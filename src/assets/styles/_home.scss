@@ -4,6 +4,16 @@
   width: 70%;
   margin: 0 auto;
   padding: 20px 15px;
+  .btn {
+    @include btn;
+    margin-left: 15px;
+    &.return {
+      @include btn($color: transparent);
+      border: 1px solid $secondary_color;
+      color: $secondary_color;
+      margin-left: 15px;
+    }
+  }
   .title {
     display: flex;
     width: 100%;
@@ -12,13 +22,9 @@
       font-family: $primary_font;
       text-transform: uppercase;
     }
-    .btn {
-      @include btn;
-      &.return {
-        @include btn($color: transparent);
-        border: 1px solid $secondary_color;
-        color: $secondary_color;
-      }
+
+    .actions {
+      display: flex;
     }
   }
   .user_tasks_table {
@@ -32,6 +38,9 @@
       border-collapse: collapse;
       thead > tr {
         border-bottom: 1px solid $secondary_color;
+      }
+      tbody > tr {
+        border-bottom: 1px solid rgba($color: $secondary_color, $alpha: 0.2);
       }
       tr {
         height: 30px;

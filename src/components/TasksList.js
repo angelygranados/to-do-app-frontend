@@ -16,8 +16,8 @@ const TasksList = (tasks) => {
   });
   return (
     <>
-      {Object.entries(orderedTasks).map((item) => (
-        <Table {...item} />
+      {Object.entries(orderedTasks).map((item, index) => (
+        <Table key={"item" + index} {...item} />
       ))}
     </>
   );

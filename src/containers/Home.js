@@ -20,17 +20,20 @@ const HomePage = ({ loadTasks, tasks, ...props }) => {
     <section className="home">
       <div className="title">
         <h2>Tasks List</h2>
-        <div>
+        <div className="actions">
+          <Link to={"/tasks/manage-tasks"} className="btn">
+            Add New Task
+          </Link>
           <Link to={"/users/"} className="btn return">
             VIEW USERS
           </Link>
-          <Link to={"/tasks/manage-tasks"} className="btn return">
-            Add New Task
-          </Link>
         </div>
       </div>
-
-      <TasksList {...tasks} />
+      {Object.keys(tasks).length == 0 ? (
+        <p>There are no tasks yet</p>
+      ) : (
+        <TasksList {...tasks} />
+      )}
     </section>
   );
 };

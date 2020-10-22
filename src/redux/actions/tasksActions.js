@@ -55,7 +55,6 @@ export function saveTask(task) {
       });
   };
 }
-
 export function deleteTask(taskId) {
   return function (dispatch) {
     // Doing optimistic delete, so not dispatching begin/end api call

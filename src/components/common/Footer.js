@@ -4,7 +4,10 @@ const Footer = () => {
   return (
     <footer id="footer" className="footer">
       <span>
-        Project created for Technical Test Full-Stack Engineering Bunny Studio
+        Developed by
+        <a href="https://angelygranados.com/" target="_blank">
+          Angely Granados
+        </a>
       </span>
     </footer>
   );
