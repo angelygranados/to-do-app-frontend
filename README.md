@@ -8,9 +8,13 @@ URL: [To Do App](https://todo.angelygranados.com/)
 
 ![Tasks view](task-view.PNG)
 
-![Tasks view](task-form.PNG)
-
 ![Tasks view](ipad-view.PNG)
+
+<br>
+
+## Architecture Diagram
+
+![Architecture Diagram](architecture-diagram.jpeg)
 
 ## Available Scripts
 
