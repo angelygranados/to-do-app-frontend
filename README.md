@@ -1,10 +1,10 @@
 # To Do App ✔️
 
-Web app that allows the user **_create_**, **_edit_** and **\*delete** users and manage their tasks.
+Web app that allows the user **_create_**, **_edit_** and **_delete_** users and manage their tasks.
 
-URL: [To Do App](https://todo.angelygranados.com/)
-
-[Backend Code](https://github.com/angelygranados/to_do_app_backend)
+<a href="https://todo.angelygranados.com/" target="_blank">To Do App</a>
+<br>
+<a href="https://github.com/angelygranados/to_do_app_backend" target="_blank">Backend Code</a>
 
 ![Tasks view](task-view.PNG)
 
